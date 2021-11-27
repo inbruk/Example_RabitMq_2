@@ -34,7 +34,7 @@ namespace Consumer.Warning
                 };
 
                 channel.BasicConsume(queueName, true, consumer);
-                Console.WriteLine("It subscribe our consumer to some-queue !");
+                Console.WriteLine($"It subscribe our consumer to queue '{queueName}'");
                 Console.ReadLine();
             }
         }

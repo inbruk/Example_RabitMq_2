@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Consumer.Info
+namespace Consumer.All
 {
     class Program
     {
         const String exchangeName = "direct_logs";
-        const String routingKey = "info";
 
         static void Main(String[] args)
         {
@@ -22,7 +21,10 @@ namespace Consumer.Info
             {
                 channel.ExchangeDeclare(exchangeName, ExchangeType.Direct);
                 var queueName = channel.QueueDeclare().QueueName;
-                channel.QueueBind(queueName, exchangeName, routingKey);
+
+                channel.QueueBind(queueName, exchangeName, "info");
+                channel.QueueBind(queueName, exchangeName, "warning");
+                channel.QueueBind(queueName, exchangeName, "error");
 
 
                 var consumer = new EventingBasicConsumer(channel);
