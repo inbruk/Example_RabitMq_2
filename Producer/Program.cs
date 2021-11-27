@@ -43,7 +43,6 @@ namespace Producer
             Task.Run(CreateTask(3000, "warning"));
             Task.Run(CreateTask(4000, "error"));
 
-
             Console.ReadKey();
         }
     }
